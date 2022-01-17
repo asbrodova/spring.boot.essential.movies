@@ -10,10 +10,12 @@
     <tr>
         <td>MOVIE</td>
         <td>YEAR</td>
+        <td>GENRE</td>
     </tr>
     <tr th:each="movie:${moviesList}">
         <td th:text="${movie.movieName}">MOVIE</td>
         <td th:text="${movie.year}"></td>
+        <td th:text="${movie.genre.genreType}"></td>
     </tr>
 </table>
 </body>

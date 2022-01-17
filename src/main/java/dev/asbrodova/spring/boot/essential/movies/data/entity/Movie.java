@@ -17,8 +17,9 @@ public class Movie {
     @Column(name = "YEAR")
     private Integer year;
 
-    @Column(name = "GENRE_ID")
-    private Long genreId;
+    @ManyToOne
+    @JoinColumn(name = "genreId")
+    private Genre genre;
 
     public Long getMovieId() {
         return movieId;
@@ -44,11 +45,11 @@ public class Movie {
         this.year = year;
     }
 
-    public Long getGenreId() {
-        return genreId;
+    public Genre getGenre() {
+        return genre;
     }
 
-    public void setGenreId(Long genreId) {
-        this.genreId = genreId;
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 }

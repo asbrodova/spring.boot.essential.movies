@@ -1,7 +1,9 @@
 package dev.asbrodova.spring.boot.essential.movies.web;
 
 import dev.asbrodova.spring.boot.essential.movies.business.service.CatalogueService;
+import dev.asbrodova.spring.boot.essential.movies.data.entity.Genre;
 import dev.asbrodova.spring.boot.essential.movies.data.entity.Movie;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import static org.hamcrest.core.StringContains.containsString;
@@ -34,13 +38,19 @@ public class MoviesWebControllerTest {
         //given
         List<Movie> givenMoviesList = new ArrayList<>();
 
-        Movie givenMovie1 = new Movie();
-        givenMovie1.setMovieId(1l);
-        givenMovie1.setMovieName("Friends");
-        givenMovie1.setYear(1990);
-        givenMovie1.setGenreId(4l);
+        Movie givenMovie = new Movie();
+        givenMovie.setMovieId(1l);
+        givenMovie.setMovieName("Friends");
+        givenMovie.setYear(1990);
 
-        givenMoviesList.add(givenMovie1);
+        Genre givenGerne = new Genre();
+        givenGerne.setGenreId(1l);
+        givenGerne.setGenreType("Comedy");
+        givenGerne.setMovies(new HashSet<Movie>(Arrays.asList(givenMovie)));
+
+        givenMovie.setGenre(givenGerne);
+
+        givenMoviesList.add(givenMovie);
 
         given(catalogueServiceMock.listAllMovies()).willReturn(givenMoviesList);
 
