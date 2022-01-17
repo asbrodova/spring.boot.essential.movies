@@ -1,3 +1,9 @@
+insert into GENRES (GENRE_ID, GENRE_TYPE) values (1, 'Comedy');
+insert into GENRES (GENRE_ID, GENRE_TYPE) values (2, 'Action');
+insert into GENRES (GENRE_ID, GENRE_TYPE) values (3, 'Documentary');
+insert into GENRES (GENRE_ID, GENRE_TYPE) values (4, 'Drama');
+insert into GENRES (GENRE_ID, GENRE_TYPE) values (5, 'Horror');
+
 insert into MOVIES (MOVIE_ID, MOVIE_NAME, YEAR, GENRE_ID) values (1, 'Grey Fox', 2005, 3);
 insert into MOVIES (MOVIE_ID, MOVIE_NAME, YEAR, GENRE_ID) values (2, 'My Name Is Julia Ross', 1998, 4);
 insert into MOVIES (MOVIE_ID, MOVIE_NAME, YEAR, GENRE_ID) values (3, 'Choices', 2010, 5);
@@ -23,9 +29,3 @@ insert into MOVIES (MOVIE_ID, MOVIE_NAME, YEAR, GENRE_ID) values (22, 'Something
 insert into MOVIES (MOVIE_ID, MOVIE_NAME, YEAR, GENRE_ID) values (23, 'Galician Caress', 2021, 4);
 insert into MOVIES (MOVIE_ID, MOVIE_NAME, YEAR, GENRE_ID) values (24, 'Stuck Between Stations', 2011, 2);
 insert into MOVIES (MOVIE_ID, MOVIE_NAME, YEAR, GENRE_ID) values (25, 'Repast', 1984, 1);
-
-insert into GENRES (GENRE_ID, GENRE_TYPE) values (1, 'Comedy');
-insert into GENRES (GENRE_ID, GENRE_TYPE) values (2, 'Action');
-insert into GENRES (GENRE_ID, GENRE_TYPE) values (3, 'Documentary');
-insert into GENRES (GENRE_ID, GENRE_TYPE) values (4, 'Drama');
-insert into GENRES (GENRE_ID, GENRE_TYPE) values (5, 'Horror');

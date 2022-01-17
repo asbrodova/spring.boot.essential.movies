@@ -1,0 +1,52 @@
+package dev.asbrodova.spring.boot.essential.movies.web;
+
+import dev.asbrodova.spring.boot.essential.movies.business.service.CatalogueService;
+import dev.asbrodova.spring.boot.essential.movies.data.entity.Movie;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.hamcrest.core.StringContains.containsString;
+import static org.mockito.BDDMockito.given;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@WebMvcTest(MoviesWebController.class)
+public class MoviesWebControllerTest {
+
+    @MockBean
+    private CatalogueService catalogueServiceMock;
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Test
+    public void shouldListAllMovies_whenGetListOfAllMovies_givenMockBehavior() throws Exception {
+        //given
+        List<Movie> givenMoviesList = new ArrayList<>();
+
+        Movie givenMovie1 = new Movie();
+        givenMovie1.setMovieId(1l);
+        givenMovie1.setMovieName("Friends");
+        givenMovie1.setYear(1990);
+        givenMovie1.setGenreId(4l);
+
+        givenMoviesList.add(givenMovie1);
+
+        given(catalogueServiceMock.listAllMovies()).willReturn(givenMoviesList);
+
+        //when/then
+        mockMvc.perform(get("/all/movies"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("Friends")));
+    }
+}
