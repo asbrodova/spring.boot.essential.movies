@@ -7,6 +7,6 @@ The functionality: list all the movies, list movies by genre, web service for ge
 
 ## Tools used:
 
-Intellij IDEA 2021.3.1 Ultimate Edition
-JDK 11
+Intellij IDEA 2021.3.1 Ultimate Edition,
+JDK 11,
 Spring Boot 2.6.2
