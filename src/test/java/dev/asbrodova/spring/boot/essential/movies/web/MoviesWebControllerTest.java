@@ -39,12 +39,10 @@ public class MoviesWebControllerTest {
         List<Movie> givenMoviesList = new ArrayList<>();
 
         Movie givenMovie = new Movie();
-        givenMovie.setMovieId(1l);
         givenMovie.setMovieName("Friends");
         givenMovie.setYear(1990);
 
         Genre givenGerne = new Genre();
-        givenGerne.setGenreId(1l);
         givenGerne.setGenreType("Comedy");
         givenGerne.setMovies(new HashSet<Movie>(Arrays.asList(givenMovie)));
 

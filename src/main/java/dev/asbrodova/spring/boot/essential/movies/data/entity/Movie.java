@@ -25,10 +25,6 @@ public class Movie {
         return movieId;
     }
 
-    public void setMovieId(Long movieId) {
-        this.movieId = movieId;
-    }
-
     public String getMovieName() {
         return movieName;
     }

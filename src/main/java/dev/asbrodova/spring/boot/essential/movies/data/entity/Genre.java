@@ -23,10 +23,6 @@ public class Genre {
         return genreId;
     }
 
-    public void setGenreId(Long genreId) {
-        this.genreId = genreId;
-    }
-
     public String getGenreType() {
         return genreType;
     }
