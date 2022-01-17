@@ -34,4 +34,19 @@ public class CatalogueService {
 
         return moviesList;
     }
+
+    /**
+     * Returns a list of all {@link Movie} with given GenreType
+     *
+     * @param genreType
+     * @return java.util.List of Movies
+     */
+    public List<Movie> listMoviesByGenreType(String genreType) {
+
+        List<Movie> moviesList = new ArrayList<>();
+        Iterable<Movie> movies = movieRepository.findMoviesByGenreGenreType(genreType);
+        movies.forEach(moviesList::add);
+
+        return moviesList;
+    }
 }
