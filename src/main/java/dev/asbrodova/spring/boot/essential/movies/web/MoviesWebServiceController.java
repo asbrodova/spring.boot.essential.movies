@@ -4,9 +4,12 @@ import dev.asbrodova.spring.boot.essential.movies.business.service.CatalogueServ
 import dev.asbrodova.spring.boot.essential.movies.data.entity.Genre;
 import dev.asbrodova.spring.boot.essential.movies.data.entity.Movie;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -32,12 +35,12 @@ public class MoviesWebServiceController {
      * @param movieName
      * @param year
      * @param genreType
-     * @return id of created Movie
+     * @return String representation of id of created Movie or warn msq in case of no genre exists
      */
     @GetMapping(value = "/create/movie")
-    public String createMovie(@RequestParam(value = "movieName", required = true) String movieName,
-                              @RequestParam(value = "year", required = true) String year,
-                              @RequestParam(value = "genre", required = true) String genreType) {
+    public String createMovieViaGet(@RequestParam(value = "movieName", required = true) String movieName,
+                                    @RequestParam(value = "year", required = true) String year,
+                                    @RequestParam(value = "genre", required = true) String genreType) {
         Movie movie = new Movie();
         movie.setMovieName(movieName);
         movie.setYear(Integer.parseInt(year));
@@ -50,5 +53,31 @@ public class MoviesWebServiceController {
         } else {
             return String.format(NO_GENRE_INFO_MESSAGE, genreType);
         }
+    }
+
+    /**
+     * Example of POST request for local testing:
+     * <p>
+     * http://localhost:8080/api/create/movie?Content-Type=application/json; charset=UTF-8
+     * <p>
+     * body:
+     * {"movieName":"Silence","year":2005,"genre":{"genreId":3}}
+     *
+     * @param movie
+     * @return HttpStatus
+     */
+    @RequestMapping(value = "/create/movie", method = RequestMethod.POST)
+    public ResponseEntity<String> createMovieViaPost(@RequestBody Movie movie) {
+        if (catalogueService.movieValid(movie)) {
+
+            Optional<Genre> genre = catalogueService.getGenreById(movie.getGenre().getGenreId());
+
+            if (genre.isPresent()) {
+                movie.setGenre(genre.get());
+                catalogueService.createMovie(movie);
+                return ResponseEntity.status(HttpStatus.CREATED).build();
+            }
+        }
+        return ResponseEntity.status(HttpStatus.I_AM_A_TEAPOT).build();
     }
 }

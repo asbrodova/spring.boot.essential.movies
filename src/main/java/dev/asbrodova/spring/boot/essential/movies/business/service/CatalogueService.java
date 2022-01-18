@@ -6,9 +6,11 @@ import dev.asbrodova.spring.boot.essential.movies.data.repository.GenreRepositor
 import dev.asbrodova.spring.boot.essential.movies.data.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CatalogueService {
@@ -92,5 +94,30 @@ public class CatalogueService {
      */
     public boolean genreExists(String genreType) {
         return genreRepository.existsByGenreType(genreType);
+    }
+
+    public Optional<Genre> getGenreById(Long genreId){
+        return genreRepository.findById(genreId);
+    }
+
+
+    /**
+     * Checks if {@link Movie} is valid
+     *
+     * @param movie
+     * @return is Movie valid or not
+     */
+    public boolean movieValid(Movie movie) {
+        return StringUtils.hasText(movie.getMovieName()) && movie.getYear() != null && validGenre(movie.getGenre());
+    }
+
+    /**
+     * checks if {@link Genre} is valid
+     *
+     * @param genre
+     * @return is Genre valid or not
+     */
+    boolean validGenre(Genre genre) {
+        return genre != null && genre.getGenreId() != null;
     }
 }
