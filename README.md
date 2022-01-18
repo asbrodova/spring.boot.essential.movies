@@ -3,7 +3,7 @@
 ## Description
 
 It's a web application which demonstrates a Spring Boot essentials. 
-The functionality: list all the movies, list movies by genre, web service for getting all movies data, list all movies from XXI century, web services for movie creation via GET and via POST
+The functionality: list all the movies, list movies by genre, web service for getting all movies data, list all XXI century movies, web services for movie creation via GET and via POST
 
 ## Tools used:
 
