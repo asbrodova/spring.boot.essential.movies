@@ -6,4 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface GenreRepository extends CrudRepository<Genre, Long> {
+
+    Genre findGenreByGenreType(String genreType);
+
+    boolean existsByGenreType(String genreType);
 }

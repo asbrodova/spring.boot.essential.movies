@@ -1,5 +1,6 @@
 package dev.asbrodova.spring.boot.essential.movies.business.service;
 
+import dev.asbrodova.spring.boot.essential.movies.data.entity.Genre;
 import dev.asbrodova.spring.boot.essential.movies.data.entity.Movie;
 import dev.asbrodova.spring.boot.essential.movies.data.repository.GenreRepository;
 import dev.asbrodova.spring.boot.essential.movies.data.repository.MovieRepository;
@@ -62,5 +63,34 @@ public class CatalogueService {
         movies.forEach(moviesList::add);
 
         return moviesList;
+    }
+
+    /**
+     * Creates a new {@link Movie}
+     *
+     * @param movie
+     */
+    public Movie createMovie(Movie movie) {
+        return movieRepository.save(movie);
+    }
+
+    /**
+     * GenreType column is UNIQUE so the findGenreByGenreType returns maxisum 1 record
+     *
+     * @param genreType
+     * @return Genre
+     */
+    public Genre getGenreByType(String genreType) {
+        return genreRepository.findGenreByGenreType(genreType);
+    }
+
+    /**
+     * checks if {@link Genre} wiht given Genre type exists
+     *
+     * @param genreType
+     * @return boolean genre exists
+     */
+    public boolean genreExists(String genreType) {
+        return genreRepository.existsByGenreType(genreType);
     }
 }
