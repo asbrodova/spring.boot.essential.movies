@@ -49,4 +49,18 @@ public class CatalogueService {
 
         return moviesList;
     }
+
+    /**
+     * Returns a list of all {@link Movie} of 21 century. As an example of repo method with @Query
+     *
+     * @return java.util.List of Movies
+     */
+    public List<Movie> listMoviesOfTwentyOneCentury() {
+
+        List<Movie> moviesList = new ArrayList<>();
+        Iterable<Movie> movies = movieRepository.findMoviesOfTwentyOnesCentury();
+        movies.forEach(moviesList::add);
+
+        return moviesList;
+    }
 }

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Controller
-@RequestMapping("/all/movies")
+@RequestMapping("/movies")
 public class MoviesWebController {
 
     private final CatalogueService catalogueService;
@@ -24,7 +24,7 @@ public class MoviesWebController {
     }
 
     @GetMapping
-    public String getListOfAllMovies(@RequestParam(value = "genre", required = false) String genreType, Model model) {
+    public String getListOfMovies(@RequestParam(value = "genre", required = false) String genreType, Model model) {
 
         List<Movie> moviesList = null;
 
@@ -34,6 +34,13 @@ public class MoviesWebController {
             moviesList = catalogueService.listAllMovies();
         }
         model.addAttribute("moviesList", moviesList);
-        return "allMovies";
+        return "movies";
+    }
+
+    @GetMapping("/twentyOneCentury")
+    public String getListOfMoviesOfTwentyOneCentury(Model model){
+        List<Movie> moviesList = catalogueService.listMoviesOfTwentyOneCentury();
+        model.addAttribute("moviesList", moviesList);
+        return "movies";
     }
 }
