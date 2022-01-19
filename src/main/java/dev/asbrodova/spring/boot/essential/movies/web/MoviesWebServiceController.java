@@ -30,7 +30,7 @@ public class MoviesWebServiceController {
     }
 
     /**
-     * Endpoint example for local testing: localhost:8080/api/create/movie?movieName=Sherlock&year=2003&genre=Action
+     * Endpoint example for local testing: localhost:8080/api/create/movie?movieName=Sherlock&year=2003&genreType=Action
      *
      * @param movieName
      * @param year
@@ -38,9 +38,9 @@ public class MoviesWebServiceController {
      * @return String representation of id of created Movie or warn msq in case of no genre exists
      */
     @GetMapping(value = "/create/movie")
-    public String createMovieViaGet(@RequestParam(value = "movieName", required = true) String movieName,
-                                    @RequestParam(value = "year", required = true) String year,
-                                    @RequestParam(value = "genre", required = true) String genreType) {
+    public String createMovieViaGet(@RequestParam String movieName,
+                                    @RequestParam String year,
+                                    @RequestParam String genreType) {
         Movie movie = new Movie();
         movie.setMovieName(movieName);
         movie.setYear(Integer.parseInt(year));
