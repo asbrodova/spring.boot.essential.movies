@@ -1,4 +1,4 @@
-package dev.asbrodova.spring.boot.essential.movies.web;
+package dev.asbrodova.spring.boot.essential.movies.controllers;
 
 import dev.asbrodova.spring.boot.essential.movies.business.service.CatalogueService;
 import dev.asbrodova.spring.boot.essential.movies.data.entity.Movie;
